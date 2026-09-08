@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deal Pro — جيميناي برو 18 شهر بـ 499 جنيه بس</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2a7ab5;
+            --primary-dark: #1f6090;
+            --teal: #2db87a;
+            --teal-dark: #24a06a;
+            --accent: #2db87a;
+            --accent-dark: #24a06a;
+            --gold: #3ecfa0;
+            --gold-dark: #2db87a;
+            --danger: #e84545;
+            --bg-dark: #0d1b28;
+            --bg-card: #132a3a;
+            --bg-card-alt: #183348;
+            --text-primary: #e8f0f5;
+            --text-secondary: #8aa8bf;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1da851;
+            --gradient-hero: linear-gradient(135deg, #0d1b28 0%, #152d42 50%, #0d1b28 100%);
+            --gradient-cta: linear-gradient(135deg, var(--whatsapp) 0%, var(--whatsapp-dark) 100%);
+            --gradient-price: linear-gradient(135deg, #2a7ab5 0%, #2db87a 100%);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+            --shadow-glow: 0 0 40px rgba(45, 184, 122, 0.2);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== ANNOUNCEMENT BAR ===== */
+        .announcement {
+            background: linear-gradient(90deg, #2a7ab5, #2db87a, #2a7ab5);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease infinite;
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            background: var(--gradient-hero);
+            padding: 60px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(42, 122, 181, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(45, 184, 122, 0.08) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(1deg); }
+            66% { transform: translate(-20px, 20px) rotate(-1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .pre-headline {
+            display: inline-block;
+            background: rgba(45, 184, 122, 0.12);
+            border: 1px solid rgba(45, 184, 122, 0.3);
+            color: #3ecfa0;
+            padding: 8px 24px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            animation: pulse-border 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { border-color: rgba(45, 184, 122, 0.3); }
+            50% { border-color: rgba(45, 184, 122, 0.7); }
+        }
+
+        .headline {
+            font-size: clamp(28px, 6vw, 46px);
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #a0d8c8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .headline .highlight {
+            background: linear-gradient(135deg, #3ecfa0, #7eecc8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sub-headline {
+            font-size: clamp(16px, 3.5vw, 20px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+            font-weight: 600;
+        }
+
+        .sub-headline strong {
+            color: var(--teal);
+        }
+
+        /* Price Badge */
+        .price-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--gradient-price);
+            padding: 16px 36px;
+            border-radius: 60px;
+            box-shadow: var(--shadow-glow);
+            margin-bottom: 16px;
+        }
+
+        .price-old {
+            font-size: 18px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .price-new {
+            font-size: clamp(30px, 7vw, 44px);
+            font-weight: 900;
+            color: #fff;
+        }
+
+        .price-new small {
+            font-size: 16px;
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .price-period {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-top: 4px;
+        }
+
+        /* ===== PAIN SECTION ===== */
+        .pain {
+            padding: 60px 20px;
+            background: var(--bg-card);
+        }
+
+        .pain-inner {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .pain-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .pain h2 {
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 800;
+            margin-bottom: 16px;
+            color: #5eb8e0;
+        }
+
+        .pain p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 2;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pain p strong {
+            color: var(--text-primary);
+        }
+
+        .pain .change-line {
+            margin-top: 24px;
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        /* ===== VALUE STACK ===== */
+        .value {
+            padding: 70px 20px;
+            background: var(--bg-dark);
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(42, 122, 181, 0.15);
+            border: 1px solid rgba(42, 122, 181, 0.3);
+            color: var(--primary);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .value h2 {
+            text-align: center;
+            font-size: clamp(24px, 5vw, 34px);
+            font-weight: 900;
+            margin-bottom: 48px;
+        }
+
+        .value-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .value-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: var(--radius);
+            padding: 28px;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-glow);
+            border-color: rgba(45, 184, 122, 0.2);
+        }
+
+        .value-card.bonus {
+            border-color: rgba(45, 184, 122, 0.3);
+            background: linear-gradient(135deg, var(--bg-card) 0%, rgba(45, 184, 122, 0.04) 100%);
+        }
+
+        .value-card.bonus::before {
+            content: '🎁 هدية مجانية';
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: var(--teal);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 12px;
+            border-radius: 50px;
+        }
+
+        .value-card-icon {
+            width: 56px;
+            height: 56px;
+            min-width: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: rgba(42, 122, 181, 0.12);
+        }
+
+        .value-card-content h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .value-card-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .value-card-price {
+            display: inline-block;
+            margin-top: 8px;
+            background: rgba(42, 122, 181, 0.1);
+            color: var(--primary);
+            padding: 3px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* Total Value Box */
+        .total-value {
+            max-width: 700px;
+            margin: 40px auto 0;
+            background: linear-gradient(135deg, var(--bg-card-alt) 0%, var(--bg-card) 100%);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .total-value::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--teal), var(--primary));
+        }
+
+        .total-value .label {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .total-value .amount {
+            font-size: clamp(28px, 6vw, 40px);
+            font-weight: 900;
+            color: var(--text-primary);
+            text-decoration: line-through;
+            text-decoration-color: var(--danger);
+            opacity: 0.6;
+        }
+
+        .total-value .vs {
+            margin: 12px 0;
+            font-size: 20px;
+            color: var(--text-secondary);
+        }
+
+        .total-value .final-price {
+            font-size: clamp(36px, 8vw, 56px);
+            font-weight: 900;
+            color: var(--accent);
+        }
+
+        .total-value .final-price small {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .total-value .savings {
+            margin-top: 12px;
+            display: inline-block;
+            background: rgba(45, 184, 122, 0.12);
+            color: var(--accent);
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        /* ===== GUARANTEE ===== */
+        .guarantee {
+            padding: 70px 20px;
+            background: var(--bg-card);
+        }
+
+        .guarantee-box {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(45, 184, 122, 0.04) 0%, rgba(42, 122, 181, 0.03) 100%);
+            border: 2px solid rgba(45, 184, 122, 0.25);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            text-align: center;
+            position: relative;
+        }
+
+        .guarantee-shield {
+            font-size: 64px;
+            margin-bottom: 16px;
+        }
+
+        .guarantee h2 {
+            font-size: clamp(22px, 5vw, 30px);
+            font-weight: 900;
+            color: var(--teal);
+            margin-bottom: 20px;
+        }
+
+        .guarantee p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 2;
+            max-width: 580px;
+            margin: 0 auto 24px;
+        }
+
+        .guarantee p strong {
+            color: var(--text-primary);
+        }
+
+        .guarantee-list {
+            list-style: none;
+            max-width: 520px;
+            margin: 0 auto;
+            text-align: right;
+        }
+
+        .guarantee-list li {
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .guarantee-list li .check {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            border-radius: 50%;
+            background: rgba(45, 184, 122, 0.15);
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .guarantee-footer {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(45, 184, 122, 0.15);
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            line-height: 2;
+        }
+
+        .guarantee-footer strong {
+            color: var(--teal);
+        }
+
+        /* ===== CTA SECTION ===== */
+        .cta {
+            padding: 70px 20px 100px;
+            background: var(--bg-dark);
+        }
+
+        .cta h2 {
+            text-align: center;
+            font-size: clamp(24px, 5vw, 34px);
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .cta .urgency {
+            text-align: center;
+            color: #5eb8e0;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 48px;
+        }
+
+        .countdown-item {
+            background: var(--bg-card);
+            border: 1px solid rgba(42, 122, 181, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            min-width: 70px;
+            text-align: center;
+        }
+
+        .countdown-item .num {
+            font-size: clamp(24px, 5vw, 32px);
+            font-weight: 900;
+            color: var(--teal);
+            line-height: 1;
+        }
+
+        .countdown-item .lbl {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* Steps */
+        .steps {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 56px;
+            right: 23px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: rgba(42, 122, 181, 0.2);
+        }
+
+        .step-num {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            border-radius: 50%;
+            background: var(--gradient-price);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 900;
+            color: #fff;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-content {
+            flex: 1;
+            padding-top: 4px;
+        }
+
+        .step-content h3 {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 6px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .vodafone-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--bg-card-alt);
+            border: 2px dashed rgba(42, 122, 181, 0.4);
+            border-radius: var(--radius-sm);
+            padding: 14px 24px;
+            margin-top: 12px;
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            direction: ltr;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vodafone-number:hover {
+            border-color: var(--primary);
+            background: rgba(42, 122, 181, 0.08);
+        }
+
+        .vodafone-number .copy-hint {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 0;
+        }
+
+        .checklist {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .checklist li {
+            padding: 4px 0;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .checklist li::before {
+            content: '✅ ';
+        }
+
+        /* Main CTA Button */
+        .cta-button-wrap {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--gradient-cta);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: clamp(18px, 4vw, 24px);
+            font-weight: 800;
+            padding: 18px 48px;
+            border-radius: 60px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35);
+            transition: all 0.3s ease;
+            animation: cta-pulse 2s ease-in-out infinite;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.04);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 8px 32px rgba(37, 211, 102, 0.35); }
+            50% { box-shadow: 0 8px 48px rgba(37, 211, 102, 0.55); }
+        }
+
+        .cta-button svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+
+        .cta-sub {
+            text-align: center;
+            margin-top: 14px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* ===== FINAL WARNING ===== */
+        .final-warning {
+            padding: 40px 20px;
+            background: rgba(42, 122, 181, 0.04);
+            border-top: 1px solid rgba(42, 122, 181, 0.12);
+            border-bottom: 1px solid rgba(42, 122, 181, 0.12);
+        }
+
+        .final-warning-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .final-warning h3 {
+            color: var(--teal);
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .final-warning p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 2;
+        }
+
+        .final-warning p strong {
+            color: var(--text-primary);
+        }
+
+        /* ===== STICKY BAR ===== */
+        .sticky-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(13, 27, 40, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(42, 122, 181, 0.25);
+            padding: 12px 20px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .sticky-bar.visible {
+            transform: translateY(0);
+        }
+
+        .sticky-info {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .sticky-info .sticky-price {
+            color: var(--accent);
+            font-weight: 900;
+        }
+
+        .sticky-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--whatsapp);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            padding: 10px 24px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .sticky-btn:hover {
+            background: var(--whatsapp-dark);
+        }
+
+        .sticky-btn svg {
+            width: 18px;
+            height: 18px;
+            fill: #fff;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 40px 20px 100px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 13px;
+            background: var(--bg-dark);
+        }
+
+        footer p {
+            margin-bottom: 4px;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 16px 60px;
+            }
+
+            .price-hero {
+                flex-direction: column;
+                gap: 4px;
+                padding: 16px 28px;
+            }
+
+            .value-card {
+                padding: 20px;
+                gap: 14px;
+            }
+
+            .value-card-icon {
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                font-size: 22px;
+                border-radius: 10px;
+            }
+
+            .guarantee-box {
+                padding: 28px 20px;
+            }
+
+            .countdown-item {
+                min-width: 56px;
+                padding: 10px 8px;
+            }
+
+            .step {
+                gap: 14px;
+            }
+
+            .cta-button {
+                padding: 16px 32px;
+                width: 100%;
+                max-width: 380px;
+            }
+
+            .sticky-bar {
+                flex-direction: column;
+                gap: 8px;
+                padding: 10px 16px;
+            }
+
+            .sticky-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 12px 24px;
+            }
+
+            .sticky-info {
+                font-size: 13px;
+            }
+        }
+
+        /* copied toast */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--primary);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 2000;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Announcement Bar -->
+    <div class="announcement">
+        ⚡ العرض محدود — السعر ده مش هيتكرر! ⚡
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content container">
+            <img src="logo.jpg" alt="Deal Pro" style="width: 140px; height: 140px; object-fit: contain; margin-bottom: 20px; border-radius: 20px;">
+            <div class="pre-headline">🔥 وفّر 15,500 جنيه — مش كلام، دي أرقام</div>
+
+            <h1 class="headline">
+                جيميناي برو الأصلي لمدة <span class="highlight">18 شهر</span>
+                <br>+ 5 تيرا تخزين سحابي
+                <br>بـ <span class="highlight">499 جنيه بس!</span>
+            </h1>
+
+            <p class="sub-headline">
+                ⚡ أقوى ذكاء اصطناعي في العالم بقى في إيدك — <strong>بسعر أقل من أكلة في مطعم</strong>
+            </p>
+
+            <div class="price-hero">
+                <span class="price-old">16,000 ج.م/سنة</span>
+                <span class="price-new">499 <small>ج.م</small></span>
+            </div>
+            <div class="price-period">دفعة واحدة — بدون اشتراك شهري 🎉</div>
+        </div>
+    </section>
+
+    <!-- Pain Section -->
+    <section class="pain">
+        <div class="pain-inner fade-up">
+            <div class="pain-icon">😤</div>
+            <h2>تعبت من الاشتراكات بالدولار؟</h2>
+            <p>
+                كل شهر بتدفع <strong>$20+</strong> (يعني 1,000 جنيه+) وبتحس إن فلوسك بتطير على حاجة المفروض <strong>تكسّبك مش تكلّفك</strong>. الكارت بيترفض، التحويلات بتتأخر، والسعر كل يوم بيزيد.
+            </p>
+            <div class="change-line">💥 خلاص — النهاردة ده بيتغيّر.</div>
+        </div>
+    </section>
+
+    <!-- Value Stack -->
+    <section class="value">
+        <div class="container">
+            <div style="text-align: center;" class="fade-up">
+                <span class="section-badge">💎 اللي هتاخده بالظبط</span>
+                <h2>كل ده في ديل واحد</h2>
+            </div>
+
+            <div class="value-cards">
+                <!-- Card 1 -->
+                <div class="value-card fade-up">
+                    <div class="value-card-icon">🤖</div>
+                    <div class="value-card-content">
+                        <h3>Gemini Pro أصلي — 18 شهر كامل</h3>
+                        <p>وصول كامل لأقوى موديل AI من جوجل بلا حدود. كود، كتابة، تحليل، brainstorming… كل حاجة.</p>
+                        <span class="value-card-price">القيمة: ~24,000 ج.م</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="value-card fade-up">
+                    <div class="value-card-icon">☁️</div>
+                    <div class="value-card-content">
+                        <h3>5 تيرابايت تخزين سحابي Google</h3>
+                        <p>مساحة تكفي كل ملفاتك، صورك، فيديوهاتك، وباك أب شغلك لسنين. مش هتحتاج هارد تاني.</p>
+                        <span class="value-card-price">القيمة: ~4,500 ج.م</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 - Bonus -->
+                <div class="value-card bonus fade-up">
+                    <div class="value-card-icon" style="background: rgba(45,184,122,0.12);">📖</div>
+                    <div class="value-card-content">
+                        <h3>كتاب "Prompts Vault" PDF</h3>
+                        <p>دليل احترافي فيه أقوى البرومبتات الجاهزة للماركتينج والبرمجة. ابدأ شغل فوري من غير تجربة وخطأ.</p>
+                        <span class="value-card-price" style="background: rgba(45,184,122,0.1); color: var(--teal);">لا يُقدَّر بثمن</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="value-card fade-up">
+                    <div class="value-card-icon" style="background: rgba(42,122,181,0.12);">🛡️</div>
+                    <div class="value-card-content">
+                        <h3>ضمان ذهبي 18 شهر + دعم فني فوري</h3>
+                        <p>لو حصلت أي مشكلة، بنحلها في نفس اليوم أو بنبدّلك الحساب فوراً. صفر مخاطرة.</p>
+                        <span class="value-card-price" style="background: rgba(45,184,122,0.1); color: var(--accent);">راحة بال كاملة</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Value -->
+            <div class="total-value fade-up">
+                <div class="label">إجمالي القيمة الحقيقية</div>
+                <div class="amount">+28,500 ج.م</div>
+                <div class="vs">👇 إنت بتدفع بس 👇</div>
+                <div class="final-price">499 <small>ج.م</small></div>
+                <div class="savings">🤯 أقل من 2% من السعر الحقيقي</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee">
+        <div class="guarantee-box fade-up">
+            <div class="guarantee-shield">🛡️</div>
+            <h2>✨ ضمان الـ 18 شهر الذهبي</h2>
+            <p>
+                إحنا عارفين إنك ممكن تكون <strong>اتنصبت قبل كده أونلاين</strong>. عارفين إن الثقة صعبة. وعشان كده بنقولك الكلام ده بوضوح:
+            </p>
+
+            <ul class="guarantee-list">
+                <li>
+                    <span class="check">✓</span>
+                    لو الحساب وقع — بنبدّلهولك بحساب جديد <strong>في نفس اليوم</strong>
+                </li>
+                <li>
+                    <span class="check">✓</span>
+                    فريق الدعم بيرد عليك على واتساب <strong>في دقايق مش أيام</strong>
+                </li>
+                <li>
+                    <span class="check">✓</span>
+                    <strong>ضمان 18 شهر كامل</strong> — طول مدة الاشتراك، إنت مغطّى بالكامل
+                </li>
+            </ul>
+
+            <div class="guarantee-footer">
+                إنت مش بتشتري حساب وخلاص — إنت بتشترك في <strong>خدمة ليها ضهر</strong>.
+                <br>الفلوس اللي بتدفعها النهاردة مش بتروح — دي <strong>استثمار مضمون في إنتاجيتك</strong>.
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="order">
+        <div class="container">
+            <h2 class="fade-up">🚀 اطلب دلوقتي — 3 خطوات بس</h2>
+            <p class="urgency fade-up">⏰ العرض ده مش هيفضل متاح — الأماكن محدودة!</p>
+
+            <!-- Countdown Timer -->
+            <div class="countdown fade-up" id="countdown">
+                <div class="countdown-item">
+                    <div class="num" id="cd-hours">00</div>
+                    <div class="lbl">ساعة</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="num" id="cd-minutes">00</div>
+                    <div class="lbl">دقيقة</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="num" id="cd-seconds">00</div>
+                    <div class="lbl">ثانية</div>
+                </div>
+            </div>
+
+            <div class="steps">
+                <!-- Step 1 -->
+                <div class="step fade-up">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>حوّل 499 جنيه على فودافون كاش من اي محفظة</h3>
+                        <p>حوّل المبلغ على الرقم ده:</p>
+                        <div class="vodafone-number" onclick="copyNumber()" id="vf-number">
+                            <span>01210771388</span>
+                            <span class="copy-hint">📋 انسخ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step fade-up">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>ابعت سكرين شوت التحويل على واتساب</h3>
+                        <p>بعد ما تحوّل، دوس على الزرار تحت وابعتلنا:</p>
+                        <ul class="checklist">
+                            <li>سكرين شوت من التحويل</li>
+                            <li>اسمك</li>
+                            <li>إيميلك (اللي عايز تستلم عليه الحساب)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step fade-up">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>استلم حسابك فوراً! 🎉</h3>
+                        <p>خلال دقايق من التأكيد، هتلاقي بيانات الحساب + كتاب الـ Prompts Vault وصلوا على الواتساب.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="cta-button-wrap fade-up">
+                <a href="https://wa.me/01210771388?text=%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%83%20%D9%81%D9%8A%20Deal%20Pro%20%F0%9F%9A%80" target="_blank" class="cta-button">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    ابعت على واتساب واستلم حسابك
+                </a>
+                <p class="cta-sub">📲 بتفتح واتساب مباشرة — الرد خلال دقايق</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Warning -->
+    <section class="final-warning">
+        <div class="final-warning-inner fade-up">
+            <h3>⚠️ تنبيه أخير</h3>
+            <p>
+                العرض ده بيتقفل لما الأماكن تخلص. السعر الطبيعي هو <strong>16,000 ج.م/سنة</strong>.
+                <br>لو قفلت الصفحة دي ورجعت بعدين، مش مضمون تلاقي نفس السعر.
+                <br><br>
+                <strong>499 جنيه. دفعة واحدة. 18 شهر. بلا مخاطرة. القرار في إيدك. 💪</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Deal Pro © 2026 — جميع الحقوق محفوظة</p>
+        <p style="margin-top: 8px; opacity: 0.6;">صفحة مبيعات فقط — ليست تابعة لـ Google بشكل رسمي</p>
+    </footer>
+
+    <!-- Sticky Bar -->
+    <div class="sticky-bar" id="stickyBar">
+        <span class="sticky-info">
+            Gemini Pro 18 شهر + 5TB + هدية 🎁 = <span class="sticky-price">499 ج.م</span>
+        </span>
+        <a href="https://wa.me/01210771388?text=%D8%B9%D8%A7%D9%8A%D8%B2%20%D8%A7%D8%B4%D8%AA%D8%B1%D9%83%20%D9%81%D9%8A%20Deal%20Pro%20%F0%9F%9A%80" target="_blank" class="sticky-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            اشترك دلوقتي
+        </a>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">✅ تم نسخ الرقم!</div>
+
+    <script>
+        // ===== Copy Vodafone Number =====
+        function copyNumber() {
+            const number = '01XXXXXXXXX'; // <-- غيّر الرقم هنا
+            navigator.clipboard.writeText(number).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        }
+
+        // ===== Countdown Timer (24h from first visit) =====
+        (function () {
+            const STORAGE_KEY = 'dealpro_countdown_end';
+            let endTime = localStorage.getItem(STORAGE_KEY);
+
+            if (!endTime) {
+                endTime = Date.now() + 24 * 60 * 60 * 1000; // 24 hours from now
+                localStorage.setItem(STORAGE_KEY, endTime);
+            } else {
+                endTime = parseInt(endTime);
+            }
+
+            function updateCountdown() {
+                const now = Date.now();
+                let diff = endTime - now;
+
+                if (diff <= 0) {
+                    // Reset to another 24h (evergreen)
+                    endTime = Date.now() + 24 * 60 * 60 * 1000;
+                    localStorage.setItem(STORAGE_KEY, endTime);
+                    diff = endTime - Date.now();
+                }
+
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+
+        // ===== Sticky Bar on Scroll =====
+        (function () {
+            const stickyBar = document.getElementById('stickyBar');
+            const hero = document.querySelector('.hero');
+
+            window.addEventListener('scroll', () => {
+                const heroBottom = hero.getBoundingClientRect().bottom;
+                if (heroBottom < 0) {
+                    stickyBar.classList.add('visible');
+                } else {
+                    stickyBar.classList.remove('visible');
+                }
+            });
+        })();
+
+        // ===== Fade-up on Scroll (Intersection Observer) =====
+        (function () {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+        })();
+    </script>
+
+</body>
+</html>

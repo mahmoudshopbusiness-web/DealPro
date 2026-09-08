@@ -582,6 +582,15 @@ src="https://www.facebook.com/tr?id=1264522870083745&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body>
+    <script>
+  if (typeof fbq === 'function') {
+    fbq('track', 'AddToCart', {
+      content_name: 'Deal Pro 18 Months',
+      value: 499.00,
+      currency: 'EGP'
+    });
+  }
+</script>
 
     <!-- FORM VIEW -->
     <div class="form-container" id="formView">
@@ -823,6 +832,14 @@ src="https://www.facebook.com/tr?id=1264522870083745&ev=PageView&noscript=1"
 
             // Hide form, show thank you
             document.getElementById('formView').style.display = 'none';
+            // إرسال حدث الشراء لفيسبوك بيكسل
+            if (typeof fbq === 'function') {
+                fbq('track', 'Purchase', {
+                    content_name: 'Deal Pro 18 Months',
+                    value: 499.00,
+                    currency: 'EGP'
+                });
+            }
 
             const thankView = document.getElementById('thankYouView');
             thankView.classList.add('visible');

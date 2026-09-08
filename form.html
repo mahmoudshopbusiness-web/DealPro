@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deal Pro — إتمام الطلب</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2a7ab5;
+            --teal: #2db87a;
+            --accent: #2db87a;
+            --bg-dark: #0d1b28;
+            --bg-card: #132a3a;
+            --bg-card-alt: #183348;
+            --text-primary: #e8f0f5;
+            --text-secondary: #8aa8bf;
+            --whatsapp: #25D366;
+            --whatsapp-dark: #1da851;
+            --gradient-price: linear-gradient(135deg, #2a7ab5 0%, #2db87a 100%);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* ===== FORM VIEW ===== */
+        .form-container {
+            max-width: 520px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid rgba(42, 122, 181, 0.15);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--teal), var(--primary));
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .form-header img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 14px;
+            margin-bottom: 16px;
+        }
+
+        .form-header h1 {
+            font-size: 26px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #fff, #a0d8c8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .form-header p {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .form-header .price-tag {
+            display: inline-block;
+            background: var(--gradient-price);
+            color: #fff;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 12px;
+        }
+
+        /* Steps indicator */
+        .steps-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .step-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            border: 2px solid rgba(42, 122, 181, 0.2);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: var(--gradient-price);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .step-dot.done {
+            background: var(--teal);
+            border-color: transparent;
+            color: #fff;
+        }
+
+        .step-line {
+            width: 40px;
+            height: 2px;
+            background: rgba(42, 122, 181, 0.2);
+            transition: background 0.3s ease;
+        }
+
+        .step-line.done {
+            background: var(--teal);
+        }
+
+        /* Vodafone info box */
+        .vf-info {
+            background: var(--bg-card-alt);
+            border: 2px dashed rgba(42, 122, 181, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            margin-bottom: 28px;
+            text-align: center;
+        }
+
+        .vf-info .label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 6px;
+        }
+
+        .vf-info .number {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            direction: ltr;
+            color: var(--teal);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .vf-info .number:hover {
+            color: #5ee8aa;
+        }
+
+        .vf-info .amount {
+            margin-top: 6px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .vf-info .copy-msg {
+            font-size: 12px;
+            color: var(--teal);
+            margin-top: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .vf-info .copy-msg.show {
+            opacity: 1;
+        }
+
+        /* Form fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .form-group label .required {
+            color: #e84545;
+        }
+
+        .form-group .hint {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--bg-card-alt);
+            border: 2px solid rgba(42, 122, 181, 0.15);
+            border-radius: var(--radius-sm);
+            color: var(--text-primary);
+            font-family: 'Cairo', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            direction: ltr;
+            text-align: right;
+            transition: border-color 0.3s ease;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+        }
+
+        .form-input::placeholder {
+            color: rgba(138, 168, 191, 0.5);
+            font-weight: 400;
+        }
+
+        /* File upload */
+        .file-upload {
+            position: relative;
+            width: 100%;
+            min-height: 140px;
+            background: var(--bg-card-alt);
+            border: 2px dashed rgba(42, 122, 181, 0.25);
+            border-radius: var(--radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .file-upload:hover {
+            border-color: var(--primary);
+            background: rgba(42, 122, 181, 0.05);
+        }
+
+        .file-upload.has-file {
+            border-color: var(--teal);
+            border-style: solid;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-upload .upload-icon {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .file-upload .upload-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .file-upload .upload-text strong {
+            color: var(--primary);
+        }
+
+        .file-upload .file-name {
+            display: none;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal);
+            margin-top: 4px;
+        }
+
+        .file-upload.has-file .file-name {
+            display: block;
+        }
+
+        .file-upload .preview-img {
+            display: none;
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .file-upload.has-file .preview-img {
+            display: block;
+        }
+
+        .file-upload.has-file .upload-icon,
+        .file-upload.has-file .upload-text {
+            display: none;
+        }
+
+        /* Name field */
+        .form-input-name {
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--gradient-price);
+            color: #fff;
+            font-family: 'Cairo', sans-serif;
+            font-size: 18px;
+            font-weight: 800;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            margin-top: 28px;
+            box-shadow: 0 6px 24px rgba(42, 122, 181, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(42, 122, 181, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+        }
+
+        /* Error message */
+        .error-msg {
+            color: #e84545;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .error-msg.show {
+            display: block;
+        }
+
+        /* ===== THANK YOU VIEW ===== */
+        .thank-you {
+            display: none;
+            max-width: 520px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid rgba(45, 184, 122, 0.2);
+            border-radius: var(--radius);
+            padding: 48px 32px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .thank-you::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--teal), var(--primary), var(--teal));
+        }
+
+        .thank-you.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .thank-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(45, 184, 122, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            animation: scaleIn 0.5s ease 0.2s both;
+        }
+
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
+        }
+
+        .thank-you h2 {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--teal);
+            margin-bottom: 12px;
+        }
+
+        .thank-you p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .thank-you .redirect-msg {
+            margin-top: 24px;
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .thank-you .countdown-text {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--teal);
+            margin: 12px 0;
+            line-height: 1;
+        }
+
+        .thank-you .wa-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            background: var(--whatsapp);
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .thank-you .wa-icon:hover {
+            background: var(--whatsapp-dark);
+        }
+
+        .thank-you .wa-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: #fff;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: rgba(42, 122, 181, 0.15);
+            border-radius: 2px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-price);
+            border-radius: 2px;
+            width: 100%;
+            animation: shrink 3s linear forwards;
+        }
+
+        @keyframes shrink {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        /* ===== BACK LINK ===== */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-primary);
+        }
+
+        /* ===== SECURE BADGE ===== */
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .secure-badge svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--teal);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 560px) {
+            .form-container,
+            .thank-you {
+                padding: 28px 20px;
+            }
+
+            .form-header h1 {
+                font-size: 22px;
+            }
+
+            .vf-info .number {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- FORM VIEW -->
+    <div class="form-container" id="formView">
+
+        <a href="index.html" class="back-link">→ الرجوع للصفحة الرئيسية</a>
+
+        <div class="form-header">
+            <img src="[https://i.ibb.co/RpVFJZKq/1788327341049.png](https://i.ibb.co/RpVFJZKq/1788327341049.png)" alt="Deal Pro">  
+            <h1>إتمام طلب Deal Pro</h1>
+            <p>حوّل المبلغ على فودافون كاش وارفع سكرين شوت التحويل</p>
+            <div class="price-tag">499 ج.م — دفعة واحدة</div>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps-indicator">
+            <div class="step-dot done" id="stepDot1">1</div>
+            <div class="step-line done"></div>
+            <div class="step-dot active" id="stepDot2">2</div>
+            <div class="step-line" id="stepLine2"></div>
+            <div class="step-dot" id="stepDot3">3</div>
+        </div>
+
+        <!-- Vodafone Cash Info -->
+        <div class="vf-info">
+            <div class="label">حوّل 499 جنيه على فودافون كاش — الرقم:</div>
+            <div class="number" onclick="copyVfNum()" id="vfNum">01210771388</div>
+            <div class="amount">المبلغ: <strong>499 ج.م</strong></div>
+            <div class="copy-msg" id="copyMsg">✅ تم نسخ الرقم!</div>
+        </div>
+
+        <form id="orderForm" onsubmit="return handleSubmit(event)">
+
+            <!-- Name -->
+            <div class="form-group">
+                <label>الاسم <span class="required">*</span></label>
+                <input type="text" class="form-input form-input-name" id="userName" placeholder="اكتب اسمك هنا" required>
+                <div class="error-msg" id="nameError">من فضلك اكتب اسمك</div>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+                <label>رقم الموبايل اللي حوّلت منه <span class="required">*</span></label>
+                <input type="tel" class="form-input" id="senderPhone" placeholder="01XXXXXXXXX" maxlength="11" required>
+                <div class="hint">الرقم اللي عملت منه التحويل على فودافون كاش</div>
+                <div class="error-msg" id="phoneError">من فضلك اكتب رقم الموبايل صح (11 رقم)</div>
+            </div>
+
+            <!-- Email -->
+            <div class="form-group">
+                <label>الإيميل <span class="required">*</span></label>
+                <input type="email" class="form-input" id="userEmail" placeholder="example@gmail.com" required>
+                <div class="hint">الإيميل اللي عايز تستلم عليه الحساب</div>
+                <div class="error-msg" id="emailError">من فضلك اكتب إيميل صحيح</div>
+            </div>
+
+            <!-- Screenshot Upload -->
+            <div class="form-group">
+                <label>سكرين شوت التحويل <span class="required">*</span></label>
+                <div class="file-upload" id="fileUpload">
+                    <input type="file" id="screenshotFile" accept="image/*" onchange="handleFileSelect(this)" required>
+                    <div class="upload-icon">📸</div>
+                    <div class="upload-text">دوس هنا أو اسحب <strong>سكرين شوت التحويل</strong></div>
+                    <div class="file-name" id="fileName"></div>
+                    <img class="preview-img" id="previewImg" alt="Preview">
+                </div>
+                <div class="error-msg" id="fileError">من فضلك ارفع سكرين شوت التحويل</div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                تأكيد الطلب
+            </button>
+
+        </form>
+
+        <div class="secure-badge">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM12 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2z"/></svg>
+            بياناتك في أمان تام ومش بتتشارك مع أي حد
+        </div>
+    </div>
+
+    <!-- THANK YOU VIEW -->
+    <div class="thank-you" id="thankYouView">
+        <div class="thank-icon">✅</div>
+        <h2>تم استلام طلبك بنجاح! 🎉</h2>
+        <p>شكراً ليك! هنراجع التحويل ونبعتلك بيانات الحساب في أقرب وقت.</p>
+        <p>هيتم تحويلك على واتساب دلوقتي عشان نكمّل معاك...</p>
+
+        <div class="redirect-msg">تحويل خلال</div>
+        <div class="countdown-text" id="thankCountdown">3</div>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <a href="#" class="wa-icon" id="waDirectLink" style="margin-top: 24px;">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            لو مفتحش تلقائي — دوس هنا
+        </a>
+    </div>
+
+    <script>
+        const WA_NUMBER = '201210771388';
+
+        // Copy Vodafone Cash number
+        function copyVfNum() {
+            const num = document.getElementById('vfNum').textContent;
+            navigator.clipboard.writeText(num).then(() => {
+                const msg = document.getElementById('copyMsg');
+                msg.classList.add('show');
+                setTimeout(() => msg.classList.remove('show'), 2000);
+            });
+        }
+
+        // Handle file selection
+        function handleFileSelect(input) {
+            const fileUpload = document.getElementById('fileUpload');
+            const fileName = document.getElementById('fileName');
+            const previewImg = document.getElementById('previewImg');
+            const fileError = document.getElementById('fileError');
+
+            if (input.files && input.files[0]) {
+                const file = input.files[0];
+
+                // Validate it's an image
+                if (!file.type.startsWith('image/')) {
+                    fileError.textContent = 'من فضلك ارفع صورة فقط (JPG, PNG, إلخ)';
+                    fileError.classList.add('show');
+                    input.value = '';
+                    return;
+                }
+
+                // Validate size (max 10MB)
+                if (file.size > 10 * 1024 * 1024) {
+                    fileError.textContent = 'حجم الصورة كبير — أقصى حد 10 ميجا';
+                    fileError.classList.add('show');
+                    input.value = '';
+                    return;
+                }
+
+                fileError.classList.remove('show');
+                fileUpload.classList.add('has-file');
+                fileName.textContent = '✅ ' + file.name;
+
+                // Show preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                fileUpload.classList.remove('has-file');
+                fileName.textContent = '';
+                previewImg.src = '';
+            }
+        }
+
+        // Validate form
+        function validateForm() {
+            let valid = true;
+
+            const name = document.getElementById('userName').value.trim();
+            const phone = document.getElementById('senderPhone').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+            const file = document.getElementById('screenshotFile').files[0];
+
+            // Name
+            if (!name) {
+                document.getElementById('nameError').classList.add('show');
+                valid = false;
+            } else {
+                document.getElementById('nameError').classList.remove('show');
+            }
+
+            // Phone (Egyptian: 01XXXXXXXXX = 11 digits)
+            const phoneRegex = /^01[0-9]{9}$/;
+            if (!phoneRegex.test(phone)) {
+                document.getElementById('phoneError').classList.add('show');
+                valid = false;
+            } else {
+                document.getElementById('phoneError').classList.remove('show');
+            }
+
+            // Email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').classList.add('show');
+                valid = false;
+            } else {
+                document.getElementById('emailError').classList.remove('show');
+            }
+
+            // File
+            if (!file) {
+                document.getElementById('fileError').classList.add('show');
+                valid = false;
+            } else {
+                document.getElementById('fileError').classList.remove('show');
+            }
+
+            return valid;
+        }
+
+        // Build WhatsApp message
+        function buildWhatsAppURL(name, phone, email) {
+            const msg = `🚀 *طلب جديد — Deal Pro*
+
+━━━━━━━━━━━━━━━━
+👤 *الاسم:* ${name}
+📱 *رقم المحوّل:* ${phone}
+📧 *الإيميل:* ${email}
+💰 *المبلغ:* 499 ج.م
+━━━━━━━━━━━━━━━━
+
+📸 *سكرين شوت التحويل:* هبعتها دلوقتي 👇`;
+
+            return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+        }
+
+        // Handle form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            if (!validateForm()) return false;
+
+            const name = document.getElementById('userName').value.trim();
+            const phone = document.getElementById('senderPhone').value.trim();
+            const email = document.getElementById('userEmail').value.trim();
+
+            // Build WhatsApp URL
+            const waURL = buildWhatsAppURL(name, phone, email);
+
+            // Update step indicators
+            document.getElementById('stepDot2').classList.remove('active');
+            document.getElementById('stepDot2').classList.add('done');
+            document.getElementById('stepLine2').classList.add('done');
+            document.getElementById('stepDot3').classList.add('active');
+
+            // Hide form, show thank you
+            document.getElementById('formView').style.display = 'none';
+
+            const thankView = document.getElementById('thankYouView');
+            thankView.classList.add('visible');
+
+            // Set direct link
+            document.getElementById('waDirectLink').href = waURL;
+
+            // Countdown 3 → 2 → 1 → redirect
+            let count = 3;
+            const countdownEl = document.getElementById('thankCountdown');
+
+            const interval = setInterval(() => {
+                count--;
+                countdownEl.textContent = count;
+
+                if (count <= 0) {
+                    clearInterval(interval);
+                    // Redirect to WhatsApp
+                    window.open(waURL, '_blank');
+                }
+            }, 1000);
+
+            return false;
+        }
+
+        // Auto-format phone input (prevent non-digits)
+        document.getElementById('senderPhone').addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').substring(0, 11);
+        });
+    </script>
+
+</body>
+</html>
